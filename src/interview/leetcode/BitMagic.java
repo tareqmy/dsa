@@ -33,5 +33,7 @@ public class BitMagic {
 
         System.out.println("abs = " + Math.abs(Integer.MIN_VALUE + 1));
         System.out.println("abs = " + Math.abs(-1));
+
+        System.out.println(Integer.toBinaryString(18880));
     }
 }
