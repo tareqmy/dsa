@@ -28,8 +28,8 @@ public class BitMagic {
         System.out.println( 4 + " << 1 = " + (4 << 1));
         System.out.println( 4 + " >> 1 = " + (4 >> 1));
         System.out.println( 4 + " >>> 1 = " + (4 >>> 1));
-        System.out.println( 4 + " >>> 1 = " + (-4 >>> 1));
-        System.out.println( 4 + " & 1 = " + (6 & 1));
+        System.out.println( -4 + " >>> 1 = " + (-4 >>> 1));
+        System.out.println( 6 + " & 1 = " + (6 & 1));
 
         System.out.println("abs = " + Math.abs(Integer.MIN_VALUE + 1));
         System.out.println("abs = " + Math.abs(-1));

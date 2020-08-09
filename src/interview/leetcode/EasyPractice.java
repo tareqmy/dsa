@@ -1,9 +1,6 @@
 package interview.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by tareqmy on 30/7/20.
@@ -17,7 +14,53 @@ public class EasyPractice {
 //        int[] nums = {1, 2, 3, 1, 1, 3};
 //        System.out.println("numIdenticalPairs(nums) = " + numIdenticalPairs(nums));
 
-        System.out.println("numberOfSteps() = " + numberOfSteps(8));
+//        System.out.println("numberOfSteps() = " + numberOfSteps(8));
+//        System.out.println((int) 'a');
+//        System.out.println((int) 'A');
+//        System.out.println('a' - 'A');
+//        System.out.println((int) 'Z');
+
+//        System.out.println(toLowerCase("Hello"));
+
+
+    }
+
+    private static void print2dArray(int[][] matrix) {
+        for (int[] row : matrix)
+            // converting each row as string
+            // and then printing in a separate line
+            System.out.println(Arrays.toString(row));
+    }
+
+    public static String toLowerCase(String str) {
+        if (str == null || str.length() == 0) return str;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c >= 'A' && c <= 'Z') {
+                builder.append((char) (c + 32));
+            } else
+                builder.append(c);
+        }
+        return builder.toString();
+    }
+
+    public int countGoodTriplets(int[] arr, int a, int b, int c) {
+        if (arr == null || arr.length < 3) return 0;
+        int count = 0;
+        for (int i = 0; i < arr.length - 2; i++) {
+            for (int j = i + 1; j < arr.length - 1; j++) {
+                if (Math.abs(arr[i] - arr[j]) <= a) {
+                    for (int k = j + 1; k < arr.length; k++) {
+                        if (Math.abs(arr[j] - arr[k]) <= b
+                                && Math.abs(arr[k] - arr[i]) <= c) {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
     }
 
     public int minTimeToVisitAllPoints(int[][] points) {
