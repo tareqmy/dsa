@@ -1,7 +1,5 @@
 package algorithms.sorting;
 
-import java.util.PriorityQueue;
-
 /**
  * Created by tareqmy on 9/8/20.
  */

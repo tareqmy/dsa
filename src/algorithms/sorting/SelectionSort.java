@@ -1,13 +1,13 @@
 package algorithms.sorting;
 
+import java.util.Arrays;
+
 public class SelectionSort {
 
     public static void main(String[] args) {
         int[] array = {5, 1, 85, 4, 7, 9, 0, 3, 1};
         int[] sorted = selectionSort(array);
-        for (int i = 0; i < sorted.length; i++) {
-            System.out.println("[" + i + "] -> " + sorted[i]);
-        }
+        System.out.println(Arrays.toString(sorted));
     }
 
     public static int[] selectionSort(int[] array) {

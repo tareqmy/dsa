@@ -14,11 +14,12 @@ public class LearnRecursion {
         fibArray[0] = 0;
         fibArray[1] = 1;
         for (int i = 2; i < (position + 1); i++) {
-            fibArray[i] = fibArray[i-1] + fibArray[i-2];
+            fibArray[i] = fibArray[i - 1] + fibArray[i - 2];
         }
 
         return fibArray[position];
     }
+
     //below and above are two alternate iterations with different space complexity
     public static long fibonacciIteration(long position) {
         if (position < 2) {

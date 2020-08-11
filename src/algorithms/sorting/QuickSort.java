@@ -43,6 +43,6 @@ public class QuickSort {
 
     public static void main(String[] args) {
         Integer[] array = {1, 9, 54, 8, 65, 1, 100, 0, 45, 50, 0, 90, 30, 46};
-        System.out.println(Arrays.asList(quickSort(array, 0, array.length - 1)));
+        System.out.println(Arrays.toString(quickSort(array, 0, array.length - 1)));
     }
 }

@@ -1,7 +1,5 @@
 package algorithms.recursion;
 
-import java.util.Arrays;
-
 public class ReverseString {
 
     //Implement a function that reverses a string using iteration...and then recursion!

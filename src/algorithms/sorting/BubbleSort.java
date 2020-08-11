@@ -1,5 +1,7 @@
 package algorithms.sorting;
 
+import java.util.Arrays;
+
 public class BubbleSort {
 
     public static int[] bubbleSort(int[] array) {
@@ -23,9 +25,7 @@ public class BubbleSort {
     public static void main(String[] args) {
         int[] array = {8, 1, 56, 4, 7, 1, 87, 0};
         int[] sorted = bubbleSort(array);
-        for (int i = 0; i < sorted.length; i++) {
-            System.out.println("[" + i + "] -> " + sorted[i]);
-        }
+        System.out.println(Arrays.toString(sorted));
     }
 
 }

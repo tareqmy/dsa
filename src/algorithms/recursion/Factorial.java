@@ -27,16 +27,14 @@ public class Factorial {
         System.out.println("findMaxValueLong() = " + findMaxValueLong()); //20
     }
 
-    public static int findMaxValueInt()
-    {
+    public static int findMaxValueInt() {
         int res = 2;
         int fact = 2;
-        while (true)
-        {
+        while (true) {
 //            System.out.println("fact = " + fact + " res = " + res);
             // when fact crosses its size,
             // it gives negative value
-            if (fact > Integer.MAX_VALUE/res)
+            if (fact > Integer.MAX_VALUE / res)
                 break;
             res++;
             fact = fact * res;
@@ -44,16 +42,14 @@ public class Factorial {
         return res;
     }
 
-    public static int findMaxValueLong()
-    {
+    public static int findMaxValueLong() {
         int res = 2;
         long fact = 2;
-        while (true)
-        {
+        while (true) {
 //            System.out.println("fact = " + fact + " res = " + res);
             // when fact crosses its size,
             // it gives negative value
-            if (fact > Long.MAX_VALUE/res)
+            if (fact > Long.MAX_VALUE / res)
                 break;
             res++;
             fact = fact * res;
