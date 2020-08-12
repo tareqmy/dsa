@@ -1,4 +1,4 @@
-package interview.google_interview_questions;
+package interview.google;
 
 import java.util.Arrays;
 

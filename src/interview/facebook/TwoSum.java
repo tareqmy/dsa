@@ -1,4 +1,4 @@
-package interview.amazon_interview_questions;
+package interview.facebook;
 
 import java.util.HashMap;
 import java.util.Map;

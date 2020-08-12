@@ -1,4 +1,4 @@
-package interview.amazon_interview_questions;
+package interview.amazon;
 
 /**
  * Created by tareqmy on 27/7/20.

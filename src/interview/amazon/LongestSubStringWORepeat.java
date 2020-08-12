@@ -1,4 +1,4 @@
-package interview.amazon_interview_questions;
+package interview.amazon;
 
 import java.util.HashMap;
 import java.util.HashSet;

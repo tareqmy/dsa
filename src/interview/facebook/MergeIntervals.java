@@ -1,4 +1,4 @@
-package interview.facebook_interview_questions;
+package interview.facebook;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package interview.facebook_interview_questions;
+package interview.facebook;
 
 /**
  * Created by tareqmy on 21/7/20.

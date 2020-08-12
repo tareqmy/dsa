@@ -1,4 +1,4 @@
-package interview.google_interview_questions;
+package interview.google;
 
 /**
  * Created by tareqmy on 24/7/20.
