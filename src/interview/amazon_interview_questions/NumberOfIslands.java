@@ -1,4 +1,4 @@
-package interview.facebook_interview_questions;
+package interview.amazon_interview_questions;
 
 import java.util.Arrays;
 import java.util.HashSet;

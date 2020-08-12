@@ -29,8 +29,8 @@ public class BitMagic {
 //        System.out.println(-4 + " >>> 1 = " + (-4 >>> 1));
 //        System.out.println(6 + " & 1 = " + (6 & 1));
 //
-//        System.out.println("abs = " + Math.abs(Integer.MIN_VALUE + 1));
-//        System.out.println("abs = " + Math.abs(-1));
+        System.out.println("abs = " + Math.abs(Integer.MIN_VALUE));
+        System.out.println("abs = " + Math.abs(-1));
 //
 //        System.out.println(Integer.toBinaryString(18880));
 
@@ -42,6 +42,14 @@ public class BitMagic {
         System.out.println("isPowerOfTwo(6) = " + isPowerOfTwo(10));
         System.out.println("hammingWeight(18880) = " + hammingWeight(18880));
         System.out.println("countOne(18880) = " + countOne(18880));
+
+        System.out.println("checkIthBitSet(20,2) = " + checkIthBitSet(20, 2));
+
+        char[] a = {'a', 'b', 'c'};
+        possibleSubsets(a);
+
+        System.out.println("mostSignificantBit(13) = " + mostSignificantBit(Integer.MAX_VALUE));
+        System.out.println("largestPower(14) = " + largestPower(Integer.MAX_VALUE));
     }
 
     public static boolean isPowerOfTwo(int x) { //O(1)
@@ -69,22 +77,51 @@ public class BitMagic {
         return count;
     }
 
+    public static boolean checkIthBitSet(int n, int i) {
+        return (n & (i << i)) == 0;
+    }
+
+    public static void possibleSubsets(char[] elements) {
+        int n = elements.length;
+        for (int i = 0; i < (1 << n); ++i) {
+            System.out.print("{");
+            for (int j = 0; j < n; ++j)
+                if ((i & (1 << j)) != 0) {
+                    System.out.print(elements[j]);
+                }
+            System.out.println("}");
+        }
+    }
+
+    public static int mostSignificantBit(int n) {
+        while (n != 0) {
+            if ((n & n - 1) == 0) return n;
+            n = n & n - 1;
+        }
+        return n;
+    }
+
+    public static int largestPower(int n) {
+        //changing all right side bits to 1.
+        n = n | (n >>> 1);
+        n = n | (n >>> 2);
+        n = n | (n >>> 4);
+//        n = n | (n >>> 8);
+//        n = n | (n >>> 16);
+        //NOTE: this too fucked up?? see mostSignificantBit
+        //as now the number is 2 * x-1, where x is required answer, so adding 1 and dividing it by 2.
+        return (n + 1) >> 1;
+    }
+
     //until n is not zero... get last digit and put it at the end of result... then remove last digit of n
     //when n is zero... just add zero at the end until 32 iterations are done.
     public static int reverseBits(int n) { //O(1)
         int reverse = 0;
-        System.out.print(n + " = " + Integer.toBinaryString(n));
-        System.out.print(" " + reverse + " = " + Integer.toBinaryString(reverse));
-        System.out.println(" n<<1 = " + (n << 1));
         for (int i = 0; i < 32; i++) {
-
             //n & 1 will return the last digit ... if last digit 0 --- get 0, if 1 --- get 1
             //left shift is creating a space in the last digit...
             reverse = (reverse << 1) | (n & 1); //left shift and create 0 in last place... and get last digit of n and put there.
             n = n >> 1; //remove last digit
-            System.out.print(n + " = " + Integer.toBinaryString(n));
-            System.out.print(" " + reverse + " = " + Integer.toBinaryString(reverse));
-            System.out.println(" n<<1 = " + (n << 1));
         }
         return reverse;
     }
@@ -111,7 +148,8 @@ public class BitMagic {
 
     //Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
     //Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
-    public static int missingNumber(int[] nums) { //this is beyond me
+    //this is beyond me
+    public static int missingNumber(int[] nums) {
         int missing = nums.length;
         for (int i = 0; i < nums.length; i++) {
             missing ^= i ^ nums[i];
@@ -120,6 +158,7 @@ public class BitMagic {
     }
 
     //Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+    //this is beyond me
     public int singleNumberBitManipulation(int[] nums) { //time O(n) space O(1)
         int a = 0;
         for (int i : nums) {
