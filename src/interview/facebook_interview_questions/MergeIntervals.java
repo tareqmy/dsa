@@ -19,8 +19,11 @@ public class MergeIntervals {
     //NOTE: could not solve... dont know whether writing on paper would have helped
 
     public static int[][] merge(int[][] intervals) { //O(nlogn)
-        Arrays.sort(intervals, new IntervalComparator());
-
+        // Sort by ascending starting point
+        Arrays.sort(intervals, Comparator.comparingInt(i -> i[0]));
+        for (int[] interval : intervals) {
+            System.out.println(Arrays.toString(interval));
+        }
         LinkedList<int[]> merged = new LinkedList<>();
         for (int[] interval : intervals) {
             // if the list of merged intervals is empty or if the current
@@ -33,6 +36,7 @@ public class MergeIntervals {
             else {
                 merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
             }
+            System.out.println("merged = " + Arrays.toString(merged.getLast()));
         }
 
         return merged.toArray(new int[merged.size()][]);

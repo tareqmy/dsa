@@ -38,32 +38,77 @@ public class LongestPalindromeSubString {
     }
 
     public static void main(String[] args) {
-        System.out.println("longestPalindrome() = " + longestPalindrome("babad"));
-        System.out.println("longestPalindrome() = " + longestPalindrome("cbbd"));
+        System.out.println("longestPalindrome() = " + longestPalindrome2("babad"));
+        System.out.println("longestPalindrome() = " + longestPalindrome2("baabad"));
+//        System.out.println("longestPalindrome() = " + longestPalindrome2("cbbd"));
     }
 
     //copied from leetcode
-    public String longestPalindrome2(String s) { //O(n^2)
+    public static String longestPalindrome2(String s) { //O(n^2)
         if (s == null || s.length() < 1) return "";
         int start = 0, end = 0;
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandAroundCenter(s, i, i);
             int len2 = expandAroundCenter(s, i, i + 1); //incase palindrome center has 2samecharacters
             int len = Math.max(len1, len2);
-            if (len > end - start) {
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
+            if (len > end - start) { //because +1 is not added, same length is replaced
+                start = i - ((len - 1) / 2);
+                end = i + (len / 2);
+
+                //NOTE: tried to find myself the calculation by analysis
+//                if (len % 2 == 0) {
+//                    //if len even
+//                    start = i - (len / 2) + 1;
+//                    end = i + (len / 2);
+//                } else {
+//                    //if len odd
+//                    start = i - (len / 2);
+//                    end = i + (len / 2);
+//                }
             }
         }
         return s.substring(start, end + 1);
     }
 
-    private int expandAroundCenter(String s, int left, int right) {
+    private static int expandAroundCenter(String s, int left, int right) {
         int L = left, R = right;
         while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
             L--;
             R++;
         }
         return R - L - 1;
+    }
+
+    //copied from leetcode then tried returning indices instead of lenght
+    public static String longestPalindromeAlt(String s) { //O(n^2)
+        if (s == null || s.length() < 1) return "";
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int[] len1 = expandAroundCenterAlt(s, i, i);
+            int[] len2 = expandAroundCenterAlt(s, i, i + 1); //incase palindrome center has 2samecharacters
+            int len = Math.max(len1[1] - len1[0] + 1, len2[1] - len2[0] + 1);
+            if (len > end - start + 1) {
+                if (len1[1] - len1[0] >= len2[1] - len2[0]) {
+                    start = len1[0];
+                    end = len1[1];
+                } else {
+                    start = len2[0];
+                    end = len2[1];
+                }
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    private static int[] expandAroundCenterAlt(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        int[] lr = new int[2];
+        lr[0] = L + 1;
+        lr[1] = R - 1;
+        return lr;
     }
 }
