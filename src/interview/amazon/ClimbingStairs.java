@@ -11,18 +11,19 @@ public class ClimbingStairs {
 
 //    1 <= n <= 45
 
-    public int climbStairs(int n) {
-        return climbStairs(0, n); //O(2^n)
+    public static int climbStairs(int n) {
+        if (n <= 2) return n;
+        return climbStairs(n - 1) + climbStairs(n - 2); //O(2^n)
     }
 
-    public int climbStairs(int i, int n) {
-        if (i > n) {
-            return 0;
-        }
-        if (i == n) {
-            return 1;
-        }
-        return climbStairs(i + 1, n) + climbStairs(i + 2, n);
+    public static void main(String[] args) {
+        System.out.println("climbStairs(0) = " + climbStairs(0));
+        System.out.println("climbStairs(1) = " + climbStairs(1));
+        System.out.println("climbStairs(2) = " + climbStairs(2));
+        System.out.println("climbStairs(3) = " + climbStairs(3));
+        System.out.println("climbStairs(4) = " + climbStairs(4));
+        System.out.println("climbStairs(5) = " + climbStairs(5));
+        System.out.println("climbStairs(6) = " + climbStairs(6));
     }
 
     /**
