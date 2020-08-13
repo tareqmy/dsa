@@ -10,29 +10,24 @@ import java.util.Map;
  */
 public class CopyListRandomPointer {
 
-    public static NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
+    public NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
         if (head == null) return null;
 
         Map<NodeWithRandomPointer, NodeWithRandomPointer> all = new HashMap<>();
         NodeWithRandomPointer current = head;
-        NodeWithRandomPointer deepCopyHead = null;
-        NodeWithRandomPointer currentCopy = null;
+        NodeWithRandomPointer deepCopyHeadPointer = new NodeWithRandomPointer(0);
+        NodeWithRandomPointer currentCopy = deepCopyHeadPointer;
 
         while (current != null) {
             NodeWithRandomPointer newCopy = new NodeWithRandomPointer(current.val);
             all.put(current, newCopy);
-            if (deepCopyHead == null) {
-                deepCopyHead = newCopy;
-                currentCopy = newCopy;
-            } else {
-                currentCopy.next = newCopy;
-                currentCopy = currentCopy.next;
-            }
+            currentCopy.next = newCopy;
+            currentCopy = currentCopy.next;
             current = current.next;
         }
 
         current = head;
-        currentCopy = deepCopyHead;
+        currentCopy = deepCopyHeadPointer.next;
         while (current != null) {
             if (current.random != null) {
                 currentCopy.random = all.get(current.random);
@@ -41,6 +36,6 @@ public class CopyListRandomPointer {
             currentCopy = currentCopy.next;
         }
 
-        return deepCopyHead;
+        return deepCopyHeadPointer.next;
     }
 }
