@@ -1,7 +1,7 @@
 package interview.leetcode;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import interview.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -17,34 +17,16 @@ public class BinaryIsSymmetric {
     public boolean isSymmetric(TreeNode root) {
         return isMirror(root, root);
     }
+
     //NOTE: done after checking leetcode solution
     public boolean isMirror(TreeNode t1, TreeNode t2) {
-        if(t1 == null && t2 == null) return true;
-        if(t1 == null || t2 == null) return false;
+        if (t1 == null && t2 == null) return true;
+        if (t1 == null || t2 == null) return false;
         return (t1.val == t2.val) && isMirror(t1.left, t2.right) && isMirror(t2.left, t1.right);
     }
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public boolean isSymmetricI(TreeNode root) {
-        if(root == null) return true;
+        if (root == null) return true;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(root);
@@ -52,9 +34,9 @@ public class BinaryIsSymmetric {
         while (!queue.isEmpty()) {
             TreeNode t1 = queue.poll();
             TreeNode t2 = queue.poll();
-            if(t1 == null && t2 == null) continue;
-            if(t1 == null || t2 == null) return false;
-            if(t1.val != t2.val) return false;
+            if (t1 == null && t2 == null) continue;
+            if (t1 == null || t2 == null) return false;
+            if (t1.val != t2.val) return false;
             queue.offer(t1.left);
             queue.offer(t2.right);
             queue.offer(t2.left);

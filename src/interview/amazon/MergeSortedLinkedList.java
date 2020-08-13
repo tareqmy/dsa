@@ -1,5 +1,7 @@
 package interview.amazon;
 
+import interview.ListNode;
+
 /**
  * Created by tareqmy on 22/7/20.
  */
@@ -54,23 +56,6 @@ public class MergeSortedLinkedList {
         return merged;
     }
 
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(4)));

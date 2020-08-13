@@ -1,18 +1,11 @@
 package interview.leetcode;
 
+import interview.ListNode;
+
 /**
  * Created by tareqmy on 21/7/20.
  */
 public class DeleteNode {
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     //    The linked list will have at least two elements.
 //    All of the nodes' values will be unique.

@@ -1,5 +1,7 @@
 package interview.amazon;
 
+import interview.NodeWithRandomPointer;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,16 +10,16 @@ import java.util.Map;
  */
 public class CopyListRandomPointer {
 
-    public static Node copyRandomList(Node head) {
+    public static NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
         if (head == null) return null;
 
-        Map<Node, Node> all = new HashMap<>();
-        Node current = head;
-        Node deepCopyHead = null;
-        Node currentCopy = null;
+        Map<NodeWithRandomPointer, NodeWithRandomPointer> all = new HashMap<>();
+        NodeWithRandomPointer current = head;
+        NodeWithRandomPointer deepCopyHead = null;
+        NodeWithRandomPointer currentCopy = null;
 
         while (current != null) {
-            Node newCopy = new Node(current.val);
+            NodeWithRandomPointer newCopy = new NodeWithRandomPointer(current.val);
             all.put(current, newCopy);
             if (deepCopyHead == null) {
                 deepCopyHead = newCopy;
@@ -40,17 +42,5 @@ public class CopyListRandomPointer {
         }
 
         return deepCopyHead;
-    }
-
-    static class Node {
-        int val;
-        Node next;
-        Node random;
-
-        public Node(int val) {
-            this.val = val;
-            this.next = null;
-            this.random = null;
-        }
     }
 }

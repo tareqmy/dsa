@@ -1,5 +1,7 @@
 package interview.leetcode;
 
+import interview.NodeWithMin;
+
 /**
  * Created by tareqmy on 24/7/20.
  */
@@ -7,13 +9,13 @@ public class MinStack {
 
     //taken solution from leetcode discuss
     //keep only the top of the stack with linkedlist.
-    private Node head;
+    private NodeWithMin head;
 
     public void push(int x) {
         if (head == null)
-            head = new Node(x, x);
+            head = new NodeWithMin(x, x);
         else
-            head = new Node(x, Math.min(x, head.min), head);
+            head = new NodeWithMin(x, Math.min(x, head.min), head);
     }
 
     public void pop() {
@@ -28,20 +30,4 @@ public class MinStack {
         return head.min;
     }
 
-    //each node will keep the min when it was the head
-    private static class Node {
-        int val;
-        int min;
-        Node next;
-
-        private Node(int val, int min) {
-            this(val, min, null);
-        }
-
-        private Node(int val, int min, Node next) {
-            this.val = val;
-            this.min = min;
-            this.next = next;
-        }
-    }
 }

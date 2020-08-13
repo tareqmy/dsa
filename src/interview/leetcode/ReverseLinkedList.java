@@ -1,5 +1,7 @@
 package interview.leetcode;
 
+import interview.ListNode;
+
 /**
  * Created by tareqmy on 21/7/20.
  */
@@ -10,7 +12,7 @@ public class ReverseLinkedList {
 
 
     public static ListNode reverseList(ListNode head) {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
         head.print();
@@ -20,6 +22,7 @@ public class ReverseLinkedList {
         head.print();
         return parent;
     }
+
     //NOTE: both copied from LEETCODE...
     //YOU NEED TO DRAW THE SEQUENCE ON PAPER TO COME CLOSE TO THE LOGIC
     public static ListNode reverseListIterative(ListNode head) {
@@ -40,41 +43,6 @@ public class ReverseLinkedList {
         head.print(head);
         ListNode listNode = reverseList(head);
         listNode.print(listNode);
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        void print(ListNode node) {
-            System.out.print(node.val);
-            while (node.next != null) {
-                node = node.next;
-                System.out.print(" > " + node.val);
-            }
-            System.out.println(" > null");
-        }
-
-        void print() {
-            System.out.print(val);
-            if(next == null) {
-                System.out.println(", next=null");
-            } else {
-                System.out.println(", next=" +next.val);
-            }
-        }
     }
 
 }

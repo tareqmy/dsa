@@ -1,16 +1,19 @@
 package interview.leetcode;
 
+import interview.TreeNode;
+
 /**
  * Created by tareqmy on 19/7/20.
  */
 public class MaxDepthBinaryTree {
 
     public static int maxDepth(TreeNode root) {
-        if(root == null) {
+        if (root == null) {
             return 0;
         }
         return depth(root, 1);
     }
+
     //NOTE: FAILED a few times on submission
     private static int depth(TreeNode node, int depth) {
         if (node == null || (node.left == null && node.right == null)) {
@@ -39,25 +42,6 @@ public class MaxDepthBinaryTree {
         if (root == null) return 0;
         if (root.left == null && root.right == null) return 1;
         return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-    }
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 
 }

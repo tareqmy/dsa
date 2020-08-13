@@ -1,5 +1,7 @@
 package interview.leetcode;
 
+import interview.TreeNode;
+
 /**
  * Created by tareqmy on 24/7/20.
  */
@@ -27,24 +29,5 @@ public class SortedArray2BinaryTree {
         node.left = sortedArrayToBST(nums, i, k - 1);
         node.right = sortedArrayToBST(nums, k + 1, j);
         return node;
-    }
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

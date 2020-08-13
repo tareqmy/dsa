@@ -1,5 +1,7 @@
 package interview.leetcode;
 
+import interview.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -98,20 +100,5 @@ public class IntersectionLinkedList {
 
         ListNode c = getIntersectionNodeLC(a, b);
         print(c, "c");
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-
-        ListNode(int x, ListNode next) {
-            val = x;
-            this.next = next;
-        }
     }
 }
