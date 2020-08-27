@@ -19,7 +19,8 @@ public class MergeIntervals {
     //NOTE: could not solve... dont know whether writing on paper would have helped
 
     public static int[][] merge(int[][] intervals) { //O(nlogn)
-        Arrays.sort(intervals, new IntervalComparator());
+//        Arrays.sort(intervals, new IntervalComparator());
+        Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0]));
 
         LinkedList<int[]> merged = new LinkedList<>();
         for (int[] interval : intervals) {
