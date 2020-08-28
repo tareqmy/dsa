@@ -11,12 +11,12 @@ public class TrieNode {
     private boolean terminates = false;
 
     // The character stored in this node as data.
-    private char character;	
+    private char character;
 
-	/* Constructs a trie node and stores this character as the node's value.
-	 * Initializes the list of child nodes of this node to an empty hash map. */
+    /* Constructs a trie node and stores this character as the node's value.
+     * Initializes the list of child nodes of this node to an empty hash map. */
     public TrieNode() {
-    	children = new HashMap<Character, TrieNode>();
+        children = new HashMap<Character, TrieNode>();
     }
 
     /* Constructs a trie node and stores in the node the char passed in
@@ -36,22 +36,22 @@ public class TrieNode {
     /* Add this word to the trie, and recursively create the child
      * nodes. */
     public void addWord(String word) {
-    	if (word == null || word.isEmpty()) {
-    		return;
-    	}
-    	
+        if (word == null || word.isEmpty()) {
+            return;
+        }
+
         char firstChar = word.charAt(0);
 
         TrieNode child = getChild(firstChar);
         if (child == null) {
             child = new TrieNode(firstChar);
             children.put(firstChar, child);
-        } 
+        }
 
         if (word.length() > 1) {
             child.addWord(word.substring(1));
         } else {
-        	child.setTerminates(true);
+            child.setTerminates(true);
         }
     }
 
@@ -59,16 +59,16 @@ public class TrieNode {
      * data. Return null if no such child node is present in the trie.
      */
     public TrieNode getChild(char c) {
-    	return children.get(c);
+        return children.get(c);
     }
 
     /* Returns whether this node represents the end of a complete word. */
     public boolean terminates() {
-    	return terminates;
+        return terminates;
     }
-    
+
     /* Set whether this node is the end of a complete word.*/
     public void setTerminates(boolean t) {
-    	terminates = t;
+        terminates = t;
     }
 }
