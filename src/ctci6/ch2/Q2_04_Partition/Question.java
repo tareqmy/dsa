@@ -45,7 +45,8 @@ public class Question {
 
     public static void main(String[] args) {
         /* Create linked list */
-        int[] vals = {33, 9, 2, 3, 10, 10389, 838, 874578, 5};
+//        int[] vals = {33, 9, 2, 3, 10, 10389, 838, 874578, 5};
+        int[] vals = {3, 5, 8, 5, 10, 2, 1};
         LinkedListNode head = new LinkedListNode(vals[0], null, null);
         LinkedListNode current = head;
         for (int i = 1; i < vals.length; i++) {
@@ -54,7 +55,7 @@ public class Question {
         System.out.println(head.printForward());
 
         /* Partition */
-        LinkedListNode h = partition(head, 3);
+        LinkedListNode h = partition(head, 5);
 
         /* Print Result */
         System.out.println(h.printForward());

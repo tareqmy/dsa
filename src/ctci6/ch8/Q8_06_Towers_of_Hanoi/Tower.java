@@ -3,7 +3,7 @@ package ctci6.ch8.Q8_06_Towers_of_Hanoi;
 import java.util.Stack;
 
 public class Tower {
-    private Stack<Integer> disks = new Stack<Integer>();
+    private Stack<Integer> disks = new Stack<>();
     public String name;
 
     public void add(int d) {

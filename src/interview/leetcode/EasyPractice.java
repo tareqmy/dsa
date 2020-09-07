@@ -25,7 +25,272 @@ public class EasyPractice {
 
 //        System.out.println(toLowerCase("Hello"));
 
+//        System.out.println("removeOuterParentheses() = " + removeOuterParentheses("(()())(())((()))"));
 
+//        int[] max = {10,2,5,2};
+//        System.out.println("maxProduct(max) = " + maxProduct(max));
+
+//        System.out.println("maximum69Number() = " + maximum69Number(9669));
+//
+//        String[] words = {"gin", "zen", "gig", "msg"};
+//        System.out.println("uniqueMorseRepresentations(words) = " + uniqueMorseRepresentations(words));
+//
+//        char c = 'a' + 3 - 1;
+//        System.out.println("c = " + c);
+//
+//        System.out.println("freqAlphabets() = " + freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
+//
+//        int[][] image = {{1,1,0,0},{1,0,0,1},{0,1,1,1},{1,0,1,0}};
+//        flipAndInvertImage(image);
+//        print2dArray(image);
+
+//        int n = ~6;
+//        System.out.println("n = " + n);
+//        int[] sumZero = sumZero(6);
+//        System.out.println("sumZero = " + Arrays.toString(sumZero));
+//        System.out.println("generateTheString(6) = " + generateTheString(5));
+
+//        System.out.println("sortString() = " + sortString("aaaabbbbcccc"));
+//        System.out.println("sortString() = " + sortString("leetcode"));
+
+        int[] prices = {10,1,1,6};
+        System.out.println("Arrays.toString(finalPrices()) = " + Arrays.toString(finalPrices(prices)));
+    }
+
+    public static int[] finalPrices(int[] prices) {
+        int[] finalPrices = new int[prices.length];
+
+        for (int i = 0; i < prices.length; i++) {
+            int discountIndex = -1;
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[i] >= prices[j]) {
+                    discountIndex = j;
+                    break;
+                }
+            }
+            if (discountIndex > 0) {
+                finalPrices[i] = prices[i] - prices[discountIndex];
+            } else {
+                finalPrices[i] = prices[i];
+            }
+        }
+        return finalPrices;
+    }
+
+    public static String sortString(String s) {
+        StringBuilder builder = new StringBuilder();
+        int[] arr = new int[26];
+        for (char c : s.toCharArray()) {
+            arr[c - 'a']++;
+        }
+        while (true) {
+            boolean hasMore = false;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > 0) {
+                    builder.append((char) (i + 'a'));
+                    arr[i]--;
+                    hasMore = hasMore || arr[i] > 0;
+                }
+            }
+            if (!hasMore) break;
+            hasMore = false;
+            for (int i = arr.length - 1; i >= 0; i--) {
+                if (arr[i] > 0) {
+                    builder.append((char) (i + 'a'));
+                    arr[i]--;
+                    hasMore = hasMore || arr[i] > 0;
+                }
+            }
+            if (!hasMore) break;
+        }
+
+        return builder.toString();
+    }
+
+    public static String generateTheString(int n) {
+        StringBuilder builder = new StringBuilder();
+        if (n % 2 == 0) {
+            builder.append('y');
+            n--;
+        }
+        for (int i = 0; i < n; i++) {
+            builder.append('x');
+        }
+        return builder.toString();
+    }
+
+    public static int[] sumZero(int n) {
+        if (n <= 0) return null;
+        int[] uniqueSumZero = new int[n];
+        int left = 0, right = n - 1;
+        while (left < right) {
+            uniqueSumZero[left] = n;
+            uniqueSumZero[right] = n * (-1);
+            n--;
+            left++;
+            right--;
+        }
+
+        return uniqueSumZero;
+    }
+
+    public static int[][] flipAndInvertImage(int[][] image) {
+        int left, right;
+        for (int[] row : image) {
+            left = 0;
+            right = row.length - 1;
+            //[1,1,0]
+            while (left < right) {
+                int temp = row[left] ^ 1;
+                row[left] = row[right] ^ 1;
+                row[right] = temp;
+                left++;
+                right--;
+            }
+            if (left == right) {
+                row[left] = row[right] ^ 1;
+            }
+        }
+        return image;
+    }
+
+    public int countNegatives(int[][] grid) {
+        int count = 0;
+        for (int[] g : grid) {
+            for (int i = 0; i < g.length; i++) {
+                if (g[i] < 0) {
+                    count = count + g.length - i;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static String freqAlphabets(String s) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (i + 2 < s.length()) {
+                if (s.charAt(i + 2) == '#') {
+                    int digit1 = Character.getNumericValue(s.charAt(i));
+                    int digit2 = Character.getNumericValue(s.charAt(i + 1));
+                    builder.append((char) ('a' + ((digit1 * 10) + digit2) - 1));
+                    i += 2;
+                } else {
+                    builder.append((char) ('a' + Character.getNumericValue(s.charAt(i)) - 1));
+                }
+            } else {
+                builder.append((char) ('a' + Character.getNumericValue(s.charAt(i)) - 1));
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public String destCity(List<List<String>> paths) {
+        Set<String> set = new HashSet<>();
+        for (List<String> l : paths) set.add(l.get(1));
+        for (List<String> l : paths) set.remove(l.get(0));
+        return set.iterator().next();
+    }
+
+    public static int uniqueMorseRepresentations(String[] words) {
+        Set<String> translations = new HashSet<>();
+        String[] MORSE = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+                "...-", ".--", "-..-", "-.--", "--.."};
+        StringBuilder builder = new StringBuilder();
+        for (String word : words) {
+            builder.setLength(0);
+            for (char c : word.toCharArray()) {
+                builder.append(MORSE[c - 'a']);
+            }
+            translations.add(builder.toString());
+        }
+        return translations.size();
+    }
+
+    public static String morsify(String word, String[] morseList) {
+        StringBuilder builder = new StringBuilder();
+        for (char c : word.toCharArray()) {
+            builder.append(morseList[c - 'a']);
+        }
+        return builder.toString();
+    }
+
+    public static int busyStudent(int[] startTime, int[] endTime, int queryTime) {
+        if (startTime == null || endTime == null) return 0;
+        if (startTime.length != endTime.length) return 0;
+        int busyCount = 0;
+        int students = startTime.length;
+
+        for (int i = 0; i < students; i++) {
+            if (startTime[i] <= queryTime && endTime[i] >= queryTime) busyCount++;
+        }
+
+        return busyCount;
+    }
+
+    public static int maximum69Number(int num) {
+        int divideBy = 0;
+        for (int i = 3; i >= 0; i--) {
+            int power = (int) Math.pow(10, i);
+            if (num / power == 0) {
+                divideBy = 0;
+            } else {
+                if (num / (divideBy + (power * 9)) == 1) {
+                    divideBy = divideBy + (power * 9);
+                } else {
+                    return num + (power * 3);
+                }
+            }
+        }
+
+        return num;
+    }
+
+    public static int maxProduct(int[] nums) {
+        if (nums == null || nums.length <= 0) return 0;
+        if (nums.length == 1) return nums[0] - 1;
+
+        int max1 = 0, max2 = 0;
+        for (int num : nums) {
+            if (num >= max2) {
+                max1 = max2;
+                max2 = num;
+            } else if (num >= max1) {
+                max1 = num;
+            }
+        }
+
+        return (max1 - 1) * (max2 - 1);
+    }
+
+    //(()())(())
+    //((()))
+    public static String removeOuterParentheses(String s) {
+        if (s == null || s.length() <= 0) {
+            return "";
+        }
+        StringBuilder builder = new StringBuilder();
+        int started = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                if (started >= 1) {
+                    builder.append(c);
+                }
+                started++;
+            } else if (c == ')') {
+                started--;
+                if (started >= 1) {
+                    builder.append(c);
+                }
+            }
+        }
+
+        return builder.toString();
     }
 
     private static void print2dArray(int[][] matrix) {

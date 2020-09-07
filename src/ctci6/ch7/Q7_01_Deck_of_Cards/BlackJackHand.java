@@ -2,7 +2,7 @@ package ctci6.ch7.Q7_01_Deck_of_Cards;
 
 import java.util.ArrayList;
 
-public class BlackJackHand extends ctci6.ch7.Q7_01_Deck_of_Cards.Hand<BlackJackCard> {
+public class BlackJackHand extends Hand<BlackJackCard> {
     public BlackJackHand() {
 
     }

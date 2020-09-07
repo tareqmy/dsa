@@ -2,11 +2,7 @@ package ctci6.ch1.Q1_09_String_Rotation;
 
 public class Question {
     public static boolean isSubstring(String big, String small) {
-        if (big.indexOf(small) >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return big.contains(small);
     }
 
     public static boolean isRotation(String s1, String s2) {
@@ -25,8 +21,8 @@ public class Question {
         for (String[] pair : pairs) {
             String word1 = pair[0];
             String word2 = pair[1];
-            boolean is_rotation = isRotation(word1, word2);
-            System.out.println(word1 + ", " + word2 + ": " + is_rotation);
+            boolean isRotation = isRotation(word1, word2);
+            System.out.println(word1 + ", " + word2 + ": " + isRotation);
         }
     }
 

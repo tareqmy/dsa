@@ -1,5 +1,6 @@
 package interview.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public class SingleNumber {
     public static void main(String[] args) {
         int[] ints = {4, 1, 2, 1, 2};
 //        System.out.println("singleNumber() = " + singleNumber(ints));
-        System.out.println("singleNumber() = " + singleNumberNoMemory(ints));
+        System.out.println("singleNumber() = " + singleNumberBitManipulation(ints));
     }
 
     //Given a non-empty array of integers, every element appears twice except for one. Find that single one.
@@ -39,7 +40,7 @@ public class SingleNumber {
         for (int i = 0; i < nums.length; i++) {
             boolean found = false;
             for (int j = 0; j < nums.length; j++) {
-                if(i==j) {
+                if (i == j) {
                     continue;
                 }
                 if (nums[i] == nums[j]) {
@@ -47,7 +48,7 @@ public class SingleNumber {
                     break;
                 }
             }
-            if(!found) {
+            if (!found) {
                 single = nums[i];
             }
         }
@@ -55,11 +56,14 @@ public class SingleNumber {
     }
 
     //COPIED FROM LEETCODE time O(n) space O(1)
-    public int singleNumberBitManipulation(int[] nums) {
-        int a = 0;
-        for (int i : nums) {
-            a ^= i;
-        }
-        return a;
+    public static int singleNumberBitManipulation(int[] nums) {
+        //does the same thing as commented out section
+        return Arrays.stream(nums).reduce(0, (left, right) -> left ^ right);
+
+//        int a = 0;
+//        for (int i : nums) {
+//            a ^= i;
+//        }
+//        return a;
     }
 }

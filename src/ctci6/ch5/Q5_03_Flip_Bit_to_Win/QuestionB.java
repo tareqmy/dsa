@@ -7,6 +7,7 @@ public class QuestionB {
     public static int longestSequence(int n) {
         if (n == -1) return Integer.BYTES * 8;
         ArrayList<Integer> sequences = getAlternatingSequences(n);
+        System.out.println("sequences = " + sequences);
         return findLongestSequence(sequences);
     }
 
@@ -14,7 +15,7 @@ public class QuestionB {
      * off with the number of 0s (which might be 0) and then alternates
      * with the counts of each value.*/
     public static ArrayList<Integer> getAlternatingSequences(int n) {
-        ArrayList<Integer> sequences = new ArrayList<Integer>();
+        ArrayList<Integer> sequences = new ArrayList<>();
 
         int searchingFor = 0;
         int counter = 0;

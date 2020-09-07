@@ -9,7 +9,7 @@ public class QuestionB {
         LinkedListNode fast = head;
         LinkedListNode slow = head;
 
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
 
         while (fast != null && fast.next != null) {
             stack.push(slow.data);
@@ -23,7 +23,7 @@ public class QuestionB {
         }
 
         while (slow != null) {
-            int top = stack.pop().intValue();
+            int top = stack.pop();
             if (top != slow.data) {
                 return false;
             }

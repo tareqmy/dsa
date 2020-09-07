@@ -13,7 +13,7 @@ public class NumberOfIslands {
     // An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
     // You may assume all four edges of the grid are all surrounded by water.
 
-    public static int numIslands(char[][] grid) {
+    public static int numIslands(char[][] grid) { //NOTE: does not work
         int islandCount = 0;
         for (int i = 0; i < grid.length; i++) {
             System.out.println(Arrays.toString(grid[i]));

@@ -2,7 +2,9 @@ package ctci6.commons;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Queue;
 
 public class AssortedMethods {
     public static int randomInt(int n) {
@@ -92,7 +94,7 @@ public class AssortedMethods {
         StringBuilder sb = new StringBuilder();
         for (int i = start; i <= end; i++) {
             int v = array[i];
-            sb.append(v + ", ");
+            sb.append(v).append(", ");
         }
         return sb.toString();
     }
@@ -100,7 +102,7 @@ public class AssortedMethods {
     public static String stringArrayToString(String[] array) {
         StringBuilder sb = new StringBuilder();
         for (String v : array) {
-            sb.append(v + ", ");
+            sb.append(v).append(", ");
         }
         return sb.toString();
     }
@@ -117,40 +119,38 @@ public class AssortedMethods {
 
     public static String toBaseNString(int a, int base) {
 
-        String s = "";
-        while (true) {
+        StringBuilder s = new StringBuilder();
+        do {
             int lastdigit = a % base;
-            s = lastdigit + s;
+            s.insert(0, lastdigit);
             a = a / base;
-            if (a == 0)
-                break;
-        }
+        } while (a != 0);
 
-        return s;
+        return s.toString();
     }
 
     public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] < 10 && matrix[i][j] > -10) {
+        for (int[] ints : matrix) {
+            for (int anInt : ints) {
+                if (anInt < 10 && anInt > -10) {
                     System.out.print(" ");
                 }
-                if (matrix[i][j] < 100 && matrix[i][j] > -100) {
+                if (anInt < 100 && anInt > -100) {
                     System.out.print(" ");
                 }
-                if (matrix[i][j] >= 0) {
+                if (anInt >= 0) {
                     System.out.print(" ");
                 }
-                System.out.print(" " + matrix[i][j]);
+                System.out.print(" " + anInt);
             }
             System.out.println();
         }
     }
 
     public static void printMatrix(boolean[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j]) {
+        for (boolean[] booleans : matrix) {
+            for (boolean aBoolean : booleans) {
+                if (aBoolean) {
                     System.out.print("1");
                 } else {
                     System.out.print("0");
@@ -161,8 +161,8 @@ public class AssortedMethods {
     }
 
     public static void printIntArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
+        for (int value : array) {
+            System.out.print(value + " ");
         }
         System.out.println("");
     }
@@ -181,7 +181,7 @@ public class AssortedMethods {
     public static String listOfPointsToString(ArrayList<Point> list) {
         StringBuilder buffer = new StringBuilder();
         for (Point p : list) {
-            buffer.append("(" + p.x + "," + p.y + ")");
+            buffer.append("(").append(p.x).append(",").append(p.y).append(")");
         }
         return buffer.toString();
     }
@@ -199,12 +199,12 @@ public class AssortedMethods {
     public static TreeNode createTreeFromArray(int[] array) {
         if (array.length > 0) {
             TreeNode root = new TreeNode(array[0]);
-            java.util.Queue<TreeNode> queue = new java.util.LinkedList<TreeNode>();
+            Queue<TreeNode> queue = new java.util.LinkedList<>();
             queue.add(root);
             boolean done = false;
             int i = 1;
             while (!done) {
-                TreeNode r = (TreeNode) queue.element();
+                TreeNode r = queue.element();
                 if (r.left == null) {
                     r.left = new TreeNode(array[i]);
                     i++;
@@ -230,9 +230,8 @@ public class AssortedMethods {
         String book = "As they rounded a bend in the path that ran beside the river, Lara recognized the silhouette of a fig tree atop a nearby hill. The weather was hot and the days were long. The fig tree was in full leaf, but not yet bearing fruit. "
                 + "Soon Lara spotted other landmarks�an outcropping of limestone beside the path that had a silhouette like a man�s face, a marshy spot beside the river where the waterfowl were easily startled, a tall tree that looked like a man with his arms upraised. They were drawing near to the place where there was an island in the river. The island was a good spot to make camp. They would sleep on the island tonight."
                 + "Lara had been back and forth along the river path many times in her short life. Her people had not created the path�it had always been there, like the river�but their deerskin-shod feet and the wooden wheels of their handcarts kept the path well worn. Lara�s people were salt traders, and their livelihood took them on a continual journey. ";
-        String book_mod = book.replace('.', ' ').replace(',', ' ')
+        return book.replace('.', ' ').replace(',', ' ')
                 .replace('-', ' ');
-        return book_mod;
     }
 
     public static String[] getLongTextBlobAsStringList() {
@@ -246,9 +245,7 @@ public class AssortedMethods {
     public static HashSet<String> getWordListAsHashSet() {
         String[] wordList = getListOfWords();
         HashSet<String> wordSet = new HashSet<String>();
-        for (String s : wordList) {
-            wordSet.add(s);
-        }
+        Collections.addAll(wordSet, wordList);
         return wordSet;
     }
 

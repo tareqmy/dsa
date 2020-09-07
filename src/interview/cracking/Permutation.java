@@ -6,7 +6,7 @@ package interview.cracking;
 public class Permutation {
 
     public static void main(String[] args) {
-        permutation("tare");
+        permutation("tareq");
     }
 
     public static void permutation(String str) {

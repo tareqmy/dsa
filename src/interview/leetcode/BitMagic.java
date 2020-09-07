@@ -36,8 +36,14 @@ public class BitMagic {
 
         System.out.println("NOT ~10=" + (~10));
         System.out.println("AND 6&10=" + (6 & 10));
+        System.out.println("AND 2&2=" + (2 & 2));
         System.out.println("OR 6|10=" + (6 | 10));
+        System.out.println("OR 2|2=" + (2 | 2));
         System.out.println("XOR 6^10=" + (6 ^ 10));
+        System.out.println("XOR 2^2=" + (2 ^ 2));
+        System.out.println("a^(~a)=" + (2 ^ (~2)));
+        System.out.println("8 & (1<<3)=" + (10 & (1<<3))); //check a bit is set or not ---- getBit
+        System.out.println("8 | (1<<1)=" + (8 | (1<<1))); //set bit
 
         System.out.println("isPowerOfTwo(6) = " + isPowerOfTwo(10));
         System.out.println("hammingWeight(18880) = " + hammingWeight(18880));

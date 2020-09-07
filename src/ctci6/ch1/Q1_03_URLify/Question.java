@@ -5,7 +5,7 @@ import ctci6.commons.AssortedMethods;
 public class Question {
     // Assume string has sufficient free space at the end
     public static void replaceSpaces(char[] str, int trueLength) {
-        int spaceCount = 0, index, i = 0;
+        int spaceCount = 0, index, i;
         for (i = 0; i < trueLength; i++) {
             if (str[i] == ' ') {
                 spaceCount++;
