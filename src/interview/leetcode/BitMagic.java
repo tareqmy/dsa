@@ -29,12 +29,14 @@ public class BitMagic {
 //        System.out.println(-4 + " >>> 1 = " + (-4 >>> 1));
 //        System.out.println(6 + " & 1 = " + (6 & 1));
 //
-        System.out.println("abs = " + Math.abs(Integer.MIN_VALUE));
-        System.out.println("abs = " + Math.abs(-1));
+
+        System.out.println("abs = " + Integer.MAX_VALUE + " : " + Integer.toBinaryString(Integer.MAX_VALUE));
+        System.out.println("abs = " + Math.abs(-1) + " : " + Integer.toBinaryString(-1));
+        System.out.println("abs = " + Math.abs(Integer.MIN_VALUE) + " : " + Integer.toBinaryString(Math.abs(Integer.MIN_VALUE)));
 //
 //        System.out.println(Integer.toBinaryString(18880));
 
-        System.out.println("NOT ~10=" + (~10));
+        System.out.println("NOT ~10=" + (~10) + " : " + Integer.toBinaryString((~10)));
         System.out.println("AND 6&10=" + (6 & 10));
         System.out.println("AND 2&2=" + (2 & 2));
         System.out.println("OR 6|10=" + (6 | 10));
@@ -42,9 +44,12 @@ public class BitMagic {
         System.out.println("XOR 6^10=" + (6 ^ 10));
         System.out.println("XOR 2^2=" + (2 ^ 2));
         System.out.println("a^(~a)=" + (2 ^ (~2)));
-        System.out.println("8 & (1<<3)=" + (10 & (1<<3))); //check a bit is set or not ---- getBit
+        System.out.println("8 & (1<<3)=" + (8 & (1<<3))); //check a bit is set or not ---- getBit
         System.out.println("8 | (1<<1)=" + (8 | (1<<1))); //set bit
 
+        System.out.println("4 is even ? " + ((4&1)==0));
+        System.out.println("5 is even ? " + ((5&1)==0));
+        System.out.println("trickCheck ? " + trickCheck(22));
         System.out.println("isPowerOfTwo(6) = " + isPowerOfTwo(10));
         System.out.println("hammingWeight(18880) = " + hammingWeight(18880));
         System.out.println("countOne(18880) = " + countOne(18880));
@@ -56,6 +61,13 @@ public class BitMagic {
 
         System.out.println("mostSignificantBit(13) = " + mostSignificantBit(Integer.MAX_VALUE));
         System.out.println("largestPower(14) = " + largestPower(Integer.MAX_VALUE));
+    }
+
+    public static String trickCheck(int n) {
+        System.out.println("n = " + Integer.toBinaryString(n));
+        System.out.println("n-1 = " + Integer.toBinaryString(n-1));
+        System.out.println("n&n-1 = " + Integer.toBinaryString(n&n-1));
+        return Integer.toBinaryString(n&n-1);
     }
 
     public static boolean isPowerOfTwo(int x) { //O(1)
@@ -76,9 +88,11 @@ public class BitMagic {
     //NOTE: alternate way of hammingWeight
     public static int countOne(int n) { //O(K), K is the number of 1 in the binary number
         int count = 0;
+        System.out.println("n = " + Integer.toBinaryString(n));
         while (n != 0) {
             n = n & (n - 1);
             count++;
+            System.out.println("n = " + Integer.toBinaryString(n));
         }
         return count;
     }
@@ -154,7 +168,7 @@ public class BitMagic {
 
     //Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
     //Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
-    //this is beyond me
+    //XOR = (1 ^ 3  ^ 5 ^ 6 ^ 2) ^ (1 ^ 2 ^ 3 ^ 4 ^ 5 ^ 6)
     public static int missingNumber(int[] nums) {
         int missing = nums.length;
         for (int i = 0; i < nums.length; i++) {
@@ -164,7 +178,7 @@ public class BitMagic {
     }
 
     //Given a non-empty array of integers, every element appears twice except for one. Find that single one.
-    //this is beyond me
+    //XOR = (1 ^ 3  ^ 1 ^ 3 ^ 2) = 2
     public int singleNumberBitManipulation(int[] nums) { //time O(n) space O(1)
         int a = 0;
         for (int i : nums) {
